@@ -1,10 +1,21 @@
 [
   {
-    "name": "Lita",
+    "name": "theme_info",
     "theme_name": "Lita - Light",
-    "theme_version": "1.0.0",
+    "theme_version": "1.0.1",
     "theme_author": "Swipe Avenue",
     "theme_documentation_url": "https://github.com/TerryThreatt/lita",
     "theme_support_url": "https://github.com/TerryThreatt/lita/issues"
+  },
+  {
+    "name": "Navigational Bar Colors Setting",
+    "settings": [
+      {
+        "type": "color",
+        "id": "navbar_color",
+        "label": "Navbar Background Color",
+        "default": "#000"
+      }
+    ]
   }
 ]

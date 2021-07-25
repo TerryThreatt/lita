@@ -13,7 +13,8 @@
           <tr>
             <td>
               <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" width="{{ image.width }}"
+  height="{{ image.height }}" loading="lazy">
               </a>
             </td>
             <td>

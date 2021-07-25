@@ -2,14 +2,15 @@
   {% unless collection.handle == 'frontpage' %}
     {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
     <a href="{{ collection.url }}">More {{ collection_title }} &rsaquo;</a>
-    {% for product in collection.products limit:5 %}
-      {% assign grid_item_width = 'large--one-fifth medium--one-half' %}
+    {% for product in collection.products limit: 5 %}
+      {% comment %} {% assign grid_item_width = 'large--one-fifth medium--one-half' %} {% endcomment %}
       <div>
         <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
         {{ product.price | money }}
         {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
         <a href="{{ product.url | within: collection }}">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" width="{{ image.width }}"
+  height="{{ image.height }}" loading="lazy">
         </a>
       </div>
     {% endfor %}

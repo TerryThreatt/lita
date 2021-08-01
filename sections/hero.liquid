@@ -3,7 +3,7 @@
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1>{{ section.settings.title }}</h1>
             {{ section.settings.description}}
-            <a href="{{ section.settings.button_link}}" class="btn btn-secondary">{{ section.settings.button_label }}</a>
+            <a class="btn btn-secondary" href="{{ section.settings.button_link}}" >{{ section.settings.button_label }}</a>
         </div>
     </div>
 </section>
@@ -14,6 +14,11 @@
     "name": "Hero",
     "class": "hero-section",
     "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Heading Background"
+        },
         {
             "type": "text",
             "id": "title",

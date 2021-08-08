@@ -1,9 +1,17 @@
-<section class="container py-5">
-    <div class="row">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1>{{ section.settings.title }}</h1>
-            {{ section.settings.description}}
-            <a class="btn btn-secondary" href="{{ section.settings.button_link}}" >{{ section.settings.button_label }}</a>
+<section class="inner-hero-section">
+    {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | img_url: 'medium'}}" alt="image" width="medium" height="medium" loading="lazy">
+    {% else %}
+        {% capture current %}{% cycle 1,2 %}{% endcapture %}
+        {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1>{{ section.settings.title }}</h1>
+                {{ section.settings.description}}
+                <a class="btn btn-secondary" href="{{ section.settings.button_link}}" >{{ section.settings.button_label }}</a>
+            </div>
         </div>
     </div>
 </section>

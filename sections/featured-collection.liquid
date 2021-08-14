@@ -1,10 +1,24 @@
-<section class="container">
-    {% for product in collection[section.settings.featured_collection].productions %}
-        <div class="card">
-            <h3>{{ product.title }}</h3>
-            <p>{{ product.price | money }}</p>
-        </div>
-    {% endfor %}
+section class="container">
+    <h2 class="text-center my-3">{{ section.settings.title }}</h2>
+    <div class="row">
+        {% assign featured_collection = section.settings.featured_collection %}
+        {% for product in collections[featured_collection].products %}
+            {% assign image = product.featured_media.preview_image %}
+            <div class="col">
+                <div class="card py-3 my-3" style="width: 18rem;">
+                    {% if image != blank %}
+                        <img class="card-img-top" src="{{ image | image_url }}" alt="{{ product.title }}">
+                    {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: 'card-img-top' }}
+                    {% endif %}
+                    <div class="card-body">
+                        <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                        <p>{{ product.price | money }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
 </section>
 
 

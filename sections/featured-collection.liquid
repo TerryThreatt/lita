@@ -1,3 +1,16 @@
+<section class="container">
+    {% for product in collection[section.settings.featured_collection].productions %}
+        <div class="card">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.price | money }}</p>
+        </div>
+    {% endfor %}
+</section>
+
+
+
+
+
 {% schema %}
 {
     "name": "Featured Collection",

@@ -1,0 +1,51 @@
+{% assign current_product = product.selected_or_first_available_variant %}
+{% assign product_image = current_product.featured_image | default: product.featured_image %}
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <div class="row">
+        <img src="{{ product_image.src | | img_url: 'large' }}" alt="{{ product_image.alt }}" class="img-fluid" id="product-image">
+      </div>
+      <div class="container-fluid overflow-auto">
+        <div class="row flex-row flex-nowrap">
+          {% for image in product.images %}
+          <div class="col">
+            <img src="{{image.src | img_url: 'small'}}" alt="{{image.alt}}">
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12">
+      <h1>{{ product.title }}</h1>
+      <p>{{ product.price | money }}</p>
+
+      {% form 'product', product, class:"product-form", id:"add-to-cart-form" %}
+        <div class="mb-3">
+          <select name="id" id="productSelect" class="form-select">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                <option value="{{ variant.id }}">
+                  {{ variant.title }}
+                </option>
+              {% else %}
+                <option value="{{ variant.id }}" disabled="disabled">
+                  {{ variant.title }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="number" class="form-control" value="1" min="1" name="quantity" id="quantity">
+        </div>
+        <button class="btn btn-secondary btn-lg w-100 rounded-0 my-3" type="submit" name="add" id="add-to-cart  ">
+          Add to cart
+        </button>
+
+        {{ form | payment_button }}
+      {% endform %}
+    </div>
+  </div>
+</div>
